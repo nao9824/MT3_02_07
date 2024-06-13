@@ -127,7 +127,12 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		Vector3 start = Transform(Transform(segment.origin, worldViewProjectionMatrix), viewportMatrix);
 		Vector3 end = Transform(Transform(Add(segment.origin, segment.diff), worldViewProjectionMatrix), viewportMatrix);
 
-		IsCollision(aabb, segment);
+		if (IsCollision(aabb, segment)) {
+			color = RED;
+		}
+		else {
+			color = WHITE;
+		}
 
 		///
 		/// ↑更新処理ここまで
@@ -139,7 +144,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 		DrawGrit(worldViewProjectionMatrix, viewportMatrix);
 		DrawAABB(aabb, worldViewProjectionMatrix, viewportMatrix, color);
-		Novice::DrawLine(int(start.x), int(start.y), int(end.x), int(end.y), color);
+		Novice::DrawLine(int(start.x), int(start.y), int(end.x), int(end.y), WHITE);
 
 		///
 		/// ↑描画処理ここまで
